@@ -13,10 +13,10 @@
 		<% @movies.each_with_index do |movie, index| %>
 	<tr>
 		<td> <a href="<%= movie.link %>" target='_blank'> <%= movie.title.capitalize %> </a> </td>
-		<td><%= movie.year %></td>
-		<td><%= movie.rating %></td>
-		<td><%= movie.source %></td>
-		<td><%= image_tag movie.image, :class => "thumbnail" %></td>
+		<td><%= movie.year if movie.year %></td>
+		<td><%= movie.rating if movie.rating %></td>
+		<td><%= movie.source if movie.source %></td>
+		<td><%= image_tag movie.image, :class => "thumbnail" if movie.image%></td>
 		</tr>
 		<% end %>
 	</tbody>
