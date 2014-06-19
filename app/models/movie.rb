@@ -41,7 +41,9 @@ class Movie < ActiveRecord::Base
 		response = client.get_rating(self.imdb)
 		result = JSON.parse(response)
 		self.rating = result['imdbRating']
-		self.image = result['Poster']
+		p result['Poster']
+		self.image = result['Poster'] unless result['Poster'] == 'N/A'
+		self.image = '' if self.image == 'N/A'
 		self.save
 	end
 

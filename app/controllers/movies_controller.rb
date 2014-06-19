@@ -10,9 +10,9 @@ class MoviesController < ApplicationController
 			movie.get_imdb
 		end
 
-		# @movies.each do |movie|
-		# 	movie.get_rating if movie.imdb
-		# end
+		@movies.each do |movie|
+			movie.get_rating if movie.imdb
+		end
 
 	end
 end
