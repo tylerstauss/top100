@@ -1,0 +1,24 @@
+<table  id="myTable" class="tablesorter table">
+	<thead>
+		<tr>
+			<th>Title <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
+			<th>Year <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
+			<th>Rating <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
+			<th>Type <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
+			<th>Image <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<% @movies.each_with_index do |movie, index| %>
+	<tr>
+		<td> <a href="<%= movie.link %>" target='_blank'> <%= movie.title.capitalize %> </a> </td>
+		<td><%= movie.year %></td>
+		<td><%= movie.rating %></td>
+		<td><%= movie.source %></td>
+		<td><%= image_tag movie.image, :class => "thumbnail" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+	
+</table>

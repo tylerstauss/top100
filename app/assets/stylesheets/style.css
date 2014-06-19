@@ -1,0 +1,17 @@
+.thumbnail {
+	width: 100px;
+}
+.body {
+	max-width: 960px;
+	padding: 5%;
+	margin: 0 auto;
+}
+
+.sort-arrow {
+	position: relative;
+	top: -3px;
+}
+
+table#myTable th {
+	cursor: pointer;
+}
