@@ -15,3 +15,12 @@
 table#myTable th {
 	cursor: pointer;
 }
+
+tr:hover {
+	background-color: #eee;
+}
+
+.thumbnail:hover {
+	width: 200px;
+	z-index: 1000;
+} 

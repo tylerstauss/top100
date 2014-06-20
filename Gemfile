@@ -9,6 +9,7 @@ gem 'nokogiri'
 gem 'httparty'
 gem 'json'
 gem 'pg'
+gem 'paperclip'
 
 
 # Gems used only for assets and not required

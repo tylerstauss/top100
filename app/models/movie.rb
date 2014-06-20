@@ -1,3 +1,4 @@
+require "open-uri"
 class Movie < ActiveRecord::Base
 	attr_accessible :title, :type, :year, :image, :rating, :imdb
 	validates_uniqueness_of :title
@@ -40,11 +41,28 @@ class Movie < ActiveRecord::Base
 		client = IMDB::Client.new
 		response = client.get_rating(self.imdb)
 		result = JSON.parse(response)
+		# p '$' * 50
+		# p result
 		self.rating = result['imdbRating']
-		p result['Poster']
 		self.image = result['Poster'] unless result['Poster'] == 'N/A'
-		self.image = '' if self.image == 'N/A'
+		self.image = 'default-image.png' if result['Poster'] == 'N/A'
 		self.save
+	end
+
+	def find_imdb
+		client = IMDB::Client.new
+		name = self.title.strip.gsub(' ', '%20')
+		p name
+		response = client.get_id(name)
+		# p '%' * 50
+		# p response
+		result = JSON.parse(response)
+		# p '%' * 50
+		# p result
+		# p result['imdbID']
+		self.imdb = result['imdbID']
+		self.save
+
 	end
 
 
