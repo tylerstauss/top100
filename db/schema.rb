@@ -11,16 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140619020137) do
+ActiveRecord::Schema.define(:version => 20140620183232) do
 
   create_table "movies", :force => true do |t|
-    t.string "title"
-    t.string "source"
-    t.string "year"
-    t.string "image"
-    t.string "rating"
-    t.string "link"
-    t.string "imdb"
+    t.string   "title"
+    t.string   "source"
+    t.string   "year"
+    t.string   "image"
+    t.string   "rating"
+    t.string   "link"
+    t.string   "imdb"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
 end

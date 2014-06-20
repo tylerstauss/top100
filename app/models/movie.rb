@@ -1,7 +1,19 @@
-require "open-uri"
+require 'open-uri'
 class Movie < ActiveRecord::Base
-	attr_accessible :title, :type, :year, :image, :rating, :imdb
+	has_attached_file :picture
+	attr_accessible :title, :type, :year, :image, :rating, :imdb, :picture_file_name, :picture_content_type, :picture_file_size, :picture_updated_at
+	
 	validates_uniqueness_of :title
+	validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+
+	
+
+	def picture_from_url(url)
+		# p open(url)
+    # self.picture = open(url)
+    self.picture = URI.parse(url)
+    # self.save
+	end
 
 	def self.populate_db
 		url = 'http://thepiratebay.se/top/201'
@@ -43,14 +55,14 @@ class Movie < ActiveRecord::Base
 		result = JSON.parse(response)
 		self.rating = result['imdbRating']
 		self.image = result['Poster'] unless result['Poster'] == 'N/A'
-		self.image = 'default-image.png' if result['Poster'] == 'N/A'
+		self.image = '' if result['Poster'] == 'N/A'
 		self.save
 	end
 
 	def find_imdb
 		client = IMDB::Client.new
 		name = self.title.strip.gsub(' ', '%20')
-		p name
+		name
 		response = client.get_id(name)
 		result = JSON.parse(response)
 		self.imdb = result['imdbID']

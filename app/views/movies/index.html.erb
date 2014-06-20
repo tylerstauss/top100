@@ -11,18 +11,20 @@
 			<th>Rating <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
 			<th>Type <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
 
-			<th>Image <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
+<!-- 			<th>Image <%=  image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th> -->
+			<th>Trailer <%= image_tag 'arrow-sort.png', :class => 'sort-arrow' %></th>
 		</tr>
 	</thead>
 	
 	<tbody>
-		<% @movies.each_with_index do |movie, index| %>
+		<% @movies.each do |movie| %>
 	<tr>
 		<td> <a href="<%= movie.link %>" target='_blank'> <%= movie.title.upcase %> </a> </td>
 		<td><%= movie.year if movie.year %></td>
 		<td><%= movie.rating if movie.rating %></td>
 		<td><%= movie.source if movie.source %></td>
-		<td><img src="<%= movie.image %> " class="thumbnail"></td>
+		<!-- <td><img src="<%=  movie.picture.url %>.jpg " class="thumbnail"></td> -->
+		<td><%= link_to "#{movie.title} trailer", "https://www.youtube.com/results?search_query=#{movie.title}+trailer" %></td>
 		</tr>
 		<% end %>
 	</tbody>
