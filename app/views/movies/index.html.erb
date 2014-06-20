@@ -16,7 +16,7 @@
 		<td><%= movie.year if movie.year %></td>
 		<td><%= movie.rating if movie.rating %></td>
 		<td><%= movie.source if movie.source %></td>
-		<td>Image</td>
+		<td><%= image_tag( movie.image) if movie.image && movie.image.length >= 4 %></td>
 		</tr>
 		<% end %>
 	</tbody>
