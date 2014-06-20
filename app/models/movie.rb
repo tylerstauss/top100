@@ -76,12 +76,19 @@ class Movie < ActiveRecord::Base
 		url.gsub!(']', '%5D')
 		doc = Nokogiri::HTML(open(url.strip))
 		response = doc.css('body').text
-		type = 'CAM' if response.match('CAM')
+		title = doc.css('#title').text
 		type = 'DVDSCR' if response.match('DVDSCR')
 		type = 'TS' if response.match('TS')
+		type = 'CAM' if response.match('CAM')
 		type = 'BRRip' if response.match('BRRip')
 		type = 'HDRip' if response.match('HDRip')
 		type = 'WEBRip' if response.match('WEBRip')
+		type = 'DVDSCR' if title.match('DVDSCR')
+		type = 'TS' if title.match('TS')
+		type = 'CAM' if title.match('CAM')
+		type = 'BRRip' if title.match('BRRip')
+		type = 'HDRip' if title.match('HDRip')
+		type = 'WEBRip' if title.match('WEBRip')
 
 		imdb_id = response.match(/(tt[0-9]{7})/)
 		self.imdb = imdb_id[1] unless imdb_id.nil?
